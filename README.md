@@ -29,29 +29,36 @@ The checks happen in `WinHTTP` layer which disallows these calls to be successfu
 Bypass
 ------
 
-The bypass is very simple. However, it requires a lot of reverse enginerring efforts. One of the simple bypass is instead of relying on `WinHTTP` layer, we directly use `Remote Prodecure Calls (RPC)` layer to invoke functionaly in `WPAD` service.
+The bypass is very simple. However, it requires a lot of reverse engineering efforts. One of the simple bypass is instead of relying on `WinHTTP` layer, we directly use `Remote Procedure Calls (RPC)` layer to invoke functionality in `WPAD` service.
 
 
 Sandboxes Bypassed
 ------------------
 
-1. Protected Mode Sandbox
-2. Enhanced Protected Mode Sandbox
-3. Edge Sandbox
-4. Chrome GPU Sandbox
-5. Adobe Reader Sandbox
-6. Firefox Sandbox
+* Protected Mode Sandbox
+* Enhanced Protected Mode Sandbox
+* Edge Sandbox
+* Chrome GPU Sandbox
+* Adobe Reader Sandbox
+* Firefox Sandbox
 
 
 Sandbox Not Bypassed
 --------------------
-1. Chrome Renderer Sandbox
+
+* Chrome Renderer Sandbox
+
+
+Demonstration Video
+===================
+
+[![WPAD Sandbox Escape](https://img.youtube.com/vi/2eKxXhBq59w/0.jpg)](https://www.youtube.com/watch?v=2eKxXhBq59w)
 
 
 Usage Instructions
 ==================
 
-To gian `Local Privilege Escalation (LPE)` using this vector, we use a `WPAD` bug. We assume that we already have an `Remote Code Execution (RCE)` in the target **sandbox** environment.
+To gain `Local Privilege Escalation (LPE)` using this vector, we use a `WPAD` bug. We assume that we already have an `Remote Code Execution (RCE)` in the target **sandbox** environment.
 
 To simulate an `RCE`, we are using `DLL injection`. Due to recent advancements in Windows security, now a days process can opt for **DLL Signature Verification**, i.e the DLL needs to be signed by Microsoft for it to get loaded in the address space for the process who has opted this security.
 
@@ -93,4 +100,10 @@ Inject DLL
 2. `python inject-dll.py --pid <PID> --dll C:\Scripts\Compiled\x64\WpadEscape.dll`
 
 
-> Note: `WPAD PAC` file URL is hardcoded in the DLL as `http://localhost:8000/wpad.dat`. Before injecting the DLL run `python -m SimpleHTTPServer` in the directory where you are hosting `wpad.dat`
+> Note: `WPAD PAC` file URL is hard-coded in the DLL as `http://localhost:8000/wpad.dat`. Before injecting the DLL run `python -m SimpleHTTPServer` in the directory where you are hosting `wpad.dat`
+
+
+------------------------------------------------------------------------
+[http://hacksys.vfreaks.com](http://hacksys.vfreaks.com)
+
+![HackSys Team](http://hacksys.vfreaks.com/wp-content/themes/Polished/images/logo.png)

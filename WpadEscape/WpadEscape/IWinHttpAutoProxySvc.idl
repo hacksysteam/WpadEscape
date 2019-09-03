@@ -61,15 +61,15 @@ interface IWinHttpAutoProxySvc
 
 
 	/* Memory Size: 24 */
-	typedef struct Struct_2
+	typedef struct WINHTTP_SESSION_OPTIONS
 	{
-		DWORD Member0;   /* Offset: 0 */    /* 0xffffffff */
-		DWORD Member1;   /* Offset: 4 */    /* 0x0000ea60 */
-		DWORD Member2;   /* Offset: 8 */    /* 0x00000005 */
-		DWORD Member3;   /* Offset: 12 */   /* 0x00007530 */
-		DWORD Member4;   /* Offset: 16 */   /* 0x00007530 */
-		DWORD Member5;   /* Offset: 20 */   /* 0x00000000 */
-	} Struct_2;
+		DWORD dwMaxTimeout;   /* Offset: 0 */    /* 0xffffffff */
+		DWORD dwTimeout1;     /* Offset: 4 */    /* 0x0000ea60 */
+		DWORD Member2;        /* Offset: 8 */    /* 0x00000005 */
+		DWORD dwTimeout2;     /* Offset: 12 */   /* 0x00007530 */
+		DWORD dwTimeout3;     /* Offset: 16 */   /* 0x00007530 */
+		DWORD Member5;        /* Offset: 20 */   /* 0x00000000 */
+	} WINHTTP_SESSION_OPTIONS;
 
 
 	/* Memory Size: 32 */
@@ -149,16 +149,16 @@ interface IWinHttpAutoProxySvc
 
 
 	HRESULT GetProxyForUrl(
-		handle_t hRpcBinding,                                            /* Stack Offset: 8 */
-		[in] tagProxyResolveUrl *pProxyResolveUrl,                       /* Stack Offset: 16 */
-		[in] WINHTTP_AUTOPROXY_OPTIONS *pAutoProxyOptions,               /* Stack Offset: 24 */
-		[in] Struct_2 *pStruct_2,                                        /* Stack Offset: 32 */
-		[in] DWORD DataLength,                              /* NULL */   /* Stack Offset: 40 */
-		[in, unique][size_is(DataLength)] BYTE *pByteArray, /* NULL */   /* Stack Offset: 48 */ /* C:(FC_TOP_LEVEL_CONFORMANCE)(40)(FC_ZERO)(FC_ULONG)(Early) */ /* unique */
-		[out] DWORD *pInt,                                               /* Stack Offset: 56 */
-		[out] WINHTTP_PROXY_RESULT_EX *pProxyResultEx,                   /* Stack Offset: 64 */
-		[out, system_handle(sh_file)] HANDLE *pNameResTrkRecordHandle,   /* Stack Offset: 72 */ /* FC_SYSTEM_HANDLE File */
-		[out] DWORD *pWinHttpStatusCode                                  /* Stack Offset: 80 */
+		handle_t hRpcBinding,                                           /* Stack Offset: 8 */
+		[in] tagProxyResolveUrl *ProxyResolveUrl,                       /* Stack Offset: 16 */
+		[in] WINHTTP_AUTOPROXY_OPTIONS *AutoProxyOptions,               /* Stack Offset: 24 */
+		[in] WINHTTP_SESSION_OPTIONS *SessionOptions,                   /* Stack Offset: 32 */
+		[in] DWORD DataLength,                              /* NULL */  /* Stack Offset: 40 */
+		[in, unique][size_is(DataLength)] BYTE *ByteArray,  /* NULL */  /* Stack Offset: 48 */ /* C:(FC_TOP_LEVEL_CONFORMANCE)(40)(FC_ZERO)(FC_ULONG)(Early) */ /* unique */
+		[out] DWORD *Int,                                               /* Stack Offset: 56 */
+		[out] WINHTTP_PROXY_RESULT_EX *ProxyResultEx,                   /* Stack Offset: 64 */
+		[out, system_handle(sh_file)] HANDLE *NameResTrkRecordHandle,   /* Stack Offset: 72 */ /* FC_SYSTEM_HANDLE File */
+		[out] DWORD *WinHttpStatusCode                                  /* Stack Offset: 80 */
 	);
 
 
